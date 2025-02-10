@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "nodemon",
-    "build": "next build",
-    "start": "next start",
+    "build": "NODE_ENV=production next build && tsc -p tsconfig.json",
+    "start": "NODE_ENV=production node ./dist/index.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "typescript": "^5.7.2"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.5",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
     "postcss": "^8",

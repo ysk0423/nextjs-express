@@ -1,14 +1,14 @@
 type Props = {
-  searchParams: {
+  searchParams: Promise<{
     name?: string;
-  };
+  }>;
 };
 
 const Custom = async (
   { searchParams }: Props,
 ) => {
-  const name = searchParams.name ?? 'hoge'
-  console.log()
+  const resolvedSearchParams = await searchParams;
+  const name = resolvedSearchParams.name ?? 'hoge'
 
   return (
     <div>
