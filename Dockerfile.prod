@@ -4,9 +4,7 @@ WORKDIR /app
 
 COPY package.json yarn.lock ./
 
-RUN yarn install --frozen-lockfile
-
-# RUN yarn global add nodemon ts-node
+RUN yarn install --frozen-lockfile && yarn cache clean
 
 COPY . .
 
@@ -18,11 +16,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-COPY package.json yarn.lock ./
-
-# production 環境用に依存関係のみインストール
-RUN yarn install --frozen-lockfile --production
-
+COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist/
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/next.config.mjs ./next.config.mjs
