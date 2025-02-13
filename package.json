@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon",
-    "build": "NODE_ENV=production next build && tsc -p tsconfig.json",
+    "build": "NODE_ENV=production next build && tsc -p tsconfig.server.json",
     "start": "NODE_ENV=production node ./dist/index.js",
     "lint": "next lint"
   },
