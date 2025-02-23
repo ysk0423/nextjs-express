@@ -7,12 +7,15 @@ phases:
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REPO_URI
       - IMAGE_TAG=v$(date +%Y%m%d%H%M%S)
       - APP_NAME="nextjs-express"
+      # Enable BuildKit
+      - export DOCKER_BUILDKIT=1
+      - docker buildx create --use
+      - docker buildx inspect --bootstrap
 
   build:
     commands:
       - echo "Building the Docker image..."
-      - export DOCKER_BUILDKIT=1
-      - docker build --cache-to=type=registry,ref=$ECR_REPO_URI:build-cache,mode=max -t $APP_NAME:$IMAGE_TAG -f Dockerfile.prod .
+      - docker buildx build --cache-to=type=registry,ref=$ECR_REPO_URI:build-cache,mode=max -t $APP_NAME:$IMAGE_TAG -f Dockerfile.prod --push .
       - docker tag $APP_NAME:$IMAGE_TAG $ECR_REPO_URI:$IMAGE_TAG
 
   post_build:
