@@ -11,7 +11,8 @@ phases:
   build:
     commands:
       - echo "Building the Docker image..."
-      - docker buildx build \
+      - export DOCKER_BUILDKIT=1
+      - docker build \
         --cache-to=type=registry,ref=$ECR_REPO_URI:build-cache,mode=max \
         -t $APP_NAME:$IMAGE_TAG -f Dockerfile.prod .
       - docker tag $APP_NAME:$IMAGE_TAG $ECR_REPO_URI:$IMAGE_TAG
