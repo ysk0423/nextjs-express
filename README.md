@@ -15,6 +15,6 @@ yarn add express
 yarn add -D nodemon ts-node @types/express @types/node
 ```
 
-## Others
+## Deploy
 
-ref: https://github.com/vercel/next.js/tree/canary/examples/custom-server
+https://github.com/ysk0423/nextjs-express-runner
