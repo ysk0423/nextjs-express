@@ -1,0 +1,27 @@
+# https://docs.github.com/ja/code-security/dependabot/working-with-dependabot/dependabot-options-reference
+version: 2
+updates:
+  - package-ecosystem: "yarn"
+    directory: "/"
+    schedule:
+      interval: "weekly" # パッチ・マイナーの更新を週1回
+    groups:
+      patch-and-minor:
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+          - "minor"
+        custom-branch-name: "dependabot/update/patch-minor" # 週次PRのブランチ名
+
+  - package-ecosystem: "yarn"
+    directory: "/"
+    schedule:
+      interval: "monthly" # メジャーアップデートを月1回
+    groups:
+      major-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "major"
+        custom-branch-name: "dependabot/update/monthly" # 月次PRのブランチ名
