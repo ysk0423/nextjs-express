@@ -12,7 +12,8 @@ updates:
         update-types:
           - "patch"
           - "minor"
-        custom-branch-name: "dependabot/update/patch-minor" # 週次PRのブランチ名
+    pull-request-branch-name:
+      prefix: "weekly-update/" # 週次PRのプレフィックス
 
   - package-ecosystem: "npm"
     directory: "/"
@@ -24,4 +25,5 @@ updates:
           - "*"
         update-types:
           - "major"
-        custom-branch-name: "dependabot/update/monthly" # 月次PRのブランチ名
+    pull-request-branch-name:
+      prefix: "monthly-update/"
