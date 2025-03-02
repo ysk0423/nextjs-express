@@ -3,24 +3,21 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
+    schedule:
+      interval: "weekly"
+    # https://docs.github.com/ja/code-security/dependabot/working-with-dependabot/dependabot-options-reference#groups--
     groups:
       patch-and-minor:
+        IDENTIFIER: "patch-and-minor-updates"
         patterns:
           - "*"
         update-types:
           - "patch"
           - "minor"
-        schedule:
-          interval: "weekly" # パッチ・マイナー更新は週1回
-        pull-request-branch-name:
-          prefix: "weekly-update/"
 
       major-updates:
+        IDENTIFIER: "major-updates"
         patterns:
           - "*"
         update-types:
           - "major"
-        schedule:
-          interval: "monthly" # メジャーアップデートは月1回
-        pull-request-branch-name:
-          prefix: "monthly-update/"
