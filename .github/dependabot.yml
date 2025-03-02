@@ -3,8 +3,6 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
-    schedule:
-      interval: "weekly" # パッチ・マイナーの更新を週1回
     groups:
       patch-and-minor:
         patterns:
@@ -12,18 +10,17 @@ updates:
         update-types:
           - "patch"
           - "minor"
-    pull-request-branch-name:
-      prefix: "weekly-update/" # 週次PRのプレフィックス
+        schedule:
+          interval: "weekly" # パッチ・マイナー更新は週1回
+        pull-request-branch-name:
+          prefix: "weekly-update/"
 
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "monthly" # メジャーアップデートを月1回
-    groups:
       major-updates:
         patterns:
           - "*"
         update-types:
           - "major"
-    pull-request-branch-name:
-      prefix: "monthly-update/"
+        schedule:
+          interval: "monthly" # メジャーアップデートは月1回
+        pull-request-branch-name:
+          prefix: "monthly-update/"
