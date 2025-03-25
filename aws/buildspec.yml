@@ -19,7 +19,7 @@ phases:
       # - docker buildx build --cache-from=type=registry,ref=$ECR_REPO_URI:build-cache --cache-to=type=registry,ref=$ECR_REPO_URI:build-cache,mode=max,image-manifest=true,oci-mediatypes=true -t $ECR_REPO_URI:$IMAGE_TAG -f Dockerfile.prod --push .
 
       # inline cache
-      - docker buildx build --load --cache-to=type=inline -f Dockerfile.prod -t $APP_NAME:$IMAGE_TAG .
+      - docker buildx build --load --cache-to=type=inline --cache-from=type=registry,ref=$ECR_REPO_URI:v20250325131458 -f Dockerfile.prod -t $APP_NAME:$IMAGE_TAG .
       # --cache-from=type=registry,ref=$ECR_REPO_URI:latest && \
 
       - docker tag $APP_NAME:$IMAGE_TAG $ECR_REPO_URI:$IMAGE_TAG
