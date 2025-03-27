@@ -16,7 +16,7 @@ phases:
     commands:
       - echo "Building the Docker image..."
       # buildxの場合はtagにECRのURIを含める必要がある
-      - docker buildx build --cache-from=type=registry,ref=$ECR_REPO_URI:build-cache --cache-to=type=registry,ref=$ECR_REPO_URI:build-cache,mode=max -t $ECR_REPO_URI:$IMAGE_TAG -f Dockerfile.prod --push .
+      - docker buildx build --cache-from=type=registry,ref=$ECR_REPO_URI:cache --cache-to=type=registry,ref=$ECR_REPO_URI:cache,mode=max -t $ECR_REPO_URI:$IMAGE_TAG -f Dockerfile.prod --push .
       # - docker pull $ECR_REPO_URI:v20250325232529|| true
       # # inline cache
       # - docker buildx build --progress=plain --load --cache-to=type=inline --cache-from=type=registry,ref=$ECR_REPO_URI:v20250325232529 -f Dockerfile.prod -t $APP_NAME:$IMAGE_TAG .
